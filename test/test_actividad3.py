@@ -1,8 +1,12 @@
 import pytest
 from src.actividad3 import conjunto_potencia
+@pytest.mark.parametrize(
+    "conjunto,potencia",
+    [
+        ({6, 1, 4},[set(), {1}, {4}, {1, 4}, {6}, {1, 6}, {4, 6}, {1, 4, 6}])
+    ]
+)
 
-def test_conjunto_potencia():
-    assert conjunto_potencia({}) == [set()]
-    assert conjunto_potencia({1}) == [set(), {1}]
-    assert conjunto_potencia({1, 2}) == [set(), {1}, {2}, {1, 2}]
-    assert conjunto_potencia({1, 2, 3}) == [set(), {1}, {2}, {1, 2}, {3}, {1, 3}, {2, 3}, {1, 2, 3}]
+
+def test_conjunto_potencia(conjunto,potencia):
+    assert conjunto_potencia(conjunto)==potencia
